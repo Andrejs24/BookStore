@@ -2,19 +2,16 @@ package com.example.bookstore.controllers;
 
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.requests.CreateBookRequest;
-import com.example.bookstore.responses.BookService;
+import com.example.bookstore.services.BookService;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-@PreAuthorize("hasAuthority('ADMIN')")
 
 public class AdminController {
-
 
     private final BookService bookService;
 
@@ -34,6 +31,7 @@ public class AdminController {
     public List<Book> showAllBooks() {
         return bookService.showAllBooks();
     }
+
 
 
 

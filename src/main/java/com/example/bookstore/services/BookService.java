@@ -1,4 +1,4 @@
-package com.example.bookstore.responses;
+package com.example.bookstore.services;
 
 import com.example.bookstore.domain.Author;
 import com.example.bookstore.domain.Book;
@@ -78,18 +78,7 @@ public class BookService {
         }
 
     }
-    public Page<Book> getBooks(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Book> booksPage = bookRepository.findAll(pageable);
 
-        List<Book> sortedBooks = booksPage.getContent().stream()
-                .sorted(Comparator.comparing(Book::getId))
-                .collect(Collectors.toList());
-
-        Collections.reverse(sortedBooks);
-
-        return new PageImpl<>(sortedBooks, pageable, booksPage.getTotalElements());
-    }
 
     public boolean isAuthorExist(CreateBookRequest request) {
         return authorRepository.isAuthorExist(request.getAuthor().getFirstName(), request.getAuthor().getLastName());
