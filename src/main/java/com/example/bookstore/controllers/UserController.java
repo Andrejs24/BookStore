@@ -3,12 +3,14 @@ package com.example.bookstore.controllers;
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.responses.BookService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("user")
+@PreAuthorize("hasAnyAuthority('ADMIN','USER')")
 public class UserController {
 
 
@@ -19,11 +21,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/books")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Book> showAllBooks() {
-        return bookService.showAllBooks();
-    }
+
+
 
 
 }

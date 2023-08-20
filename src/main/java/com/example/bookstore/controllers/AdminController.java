@@ -2,16 +2,17 @@ package com.example.bookstore.controllers;
 
 import com.example.bookstore.domain.Book;
 import com.example.bookstore.requests.CreateBookRequest;
-import com.example.bookstore.requests.SearchBookRequest;
 import com.example.bookstore.responses.BookService;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@PreAuthorize("hasAuthority('ADMIN')")
+
 public class AdminController {
 
 
@@ -28,17 +29,12 @@ public class AdminController {
         return "Book created successfully!";
     }
 
-//    @GetMapping("/books")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Book> showAllBooks(){
-//     return  bookService.showAllBooks();
-//    }
-
     @GetMapping("/books")
-    public Page<Book> getBooks(@RequestParam(defaultValue = "0") int page,
-                               @RequestParam(defaultValue = "50") int size) {
-        return bookService.getBooks(page, size);
+    @ResponseStatus(HttpStatus.OK)
+    public List<Book> showAllBooks() {
+        return bookService.showAllBooks();
     }
+
 
 
 }
