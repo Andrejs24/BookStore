@@ -6,5 +6,6 @@
 
     <include file="/db/changelog/changes/001-create-author-table.sql"/>
     <include file="/db/changelog/changes/002-create-book-table.sql"/>
+    <include file="db/changelog/changes/003-create-users-table.sql"/>
 
 </databaseChangeLog>

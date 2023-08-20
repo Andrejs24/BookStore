@@ -9,5 +9,5 @@ CREATE TABLE book
     Author_id BIGINT NOT NULL ,
     Description VARCHAR(255) not null ,
     Price INTEGER not null ,
-FOREIGN KEY (Author_id) REFERENCES author(id)
+FOREIGN KEY (Author_id) REFERENCES author(id) On DELETE CASCADE ON UPDATE CASCADE
 )
